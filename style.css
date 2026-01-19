@@ -1,0 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: Arial, sans-serif;
+}
+
+/* Prevent horizontal overflow and set page background to paper texture */
+html, body {
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #f2f2f2;
+    background-image: url('images/back.jfif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Normal state */
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Initial navbar uses the Nepal flag with a translucent white overlay */
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('images/flag.png');
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover, cover;
+    background-position: center center, center center;
+    background-blend-mode: overlay;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, background-image 0.3s ease;
+    z-index: 1000;
+}
+
+/* Scrolled state */
+.navbar.scrolled{
+    background: rgba(255, 255, 255, 0.75); /* white + transparent */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+.nav-links{
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+
+.nav-links a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: black;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover::after{
+    width: 100%;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+    background: red; /* or any color */
+}
+
+
+header{
+    padding-top: 120px;
+    color: black;
+    padding-bottom: 15px;
+    text-align: center;
+    /* Ensure header has no background image or color */
+    background: none;
+    background-image: none;
+    background-color: transparent;
+}
+
+.hero {
+    background-image: url('images/bg2.jpg');
+    background-size: cover;
+    background-position: bottom;
+    color: white;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 5px black;
+    font-size: 25px;
+}
+
+.section {
+    padding: 30px;
+    text-align: center;
+    background: white;
+    margin: 20px;
+    border-radius: 8px;
+}
+
+.places {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.card {
+    width: 250px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    overflow: hidden;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+     transition: transform 0.3s;
+}
+
+.card img:hover {
+     transform: scale(1.05);
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.gallery img {
+    width: 250px;
+    height: 150px;
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+/* Make images responsive and avoid overflow */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Icon styles */
+.nav-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: cover;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.section-icon {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 12px;
+}
+
+/* Center headings while keeping icon and text aligned */
+.section h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Smaller icons on narrow screens */
+@media (max-width: 480px) {
+    .nav-icon { width: 14px; height: 14px; }
+    .section-icon { width: 26px; height: 26px; }
+}
+
+/* On small screens, avoid background-attachment: fixed to prevent mobile issues */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        background-size: auto;
+    }
+    .navbar {
+        background-attachment: scroll;
+    }
+}
+
+button {
+    background: red;
+    color: white;
+    padding: 6px 15px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.contact-form label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.contact-form textarea {
+    height: 120px;
+    resize: none;
+}
+
+.contact-form button {
+    background: red;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background: #c50000;
+}
+
+footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.nav-links a.active {
+    border-bottom: 2px solid red;
+}
+
+.gallery img {
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+h2{
+    font-size: 30px;
+}
